@@ -21,7 +21,7 @@ package.json     pins Wrangler, the Cloudflare CLI
 | `/treatments` | `treatments.html` | The seven menu categories, with from-prices and Book buttons |
 | `/treatments/facials` and six more | `treatments/*.html` | One page per menu category with the full price list and its own share image |
 | `/packages` | `packages.html` | Signature spa rituals and gift cards |
-| `/visit` | `visit.html` | Address, hours, contact form |
+| `/visit` | `visit.html` | Plan your visit: address, hours, FAQs, contact form |
 | `/book` | `book.html` | Booking, framed in the site's header and footer, ready for the Square embed |
 | `/privacy` | `privacy.html` | Privacy policy, linked from the footer's bottom bar |
 
@@ -151,6 +151,8 @@ When it changes, update the "Last updated" line in the page's side column.
   declares a `Service` with an `OfferCatalog` of every menu item (name, duration, price in AUD) and a
   `BreadcrumbList`; the treatments index declares an `ItemList`. It is generated from the menu markup,
   so when prices change in the HTML, regenerate or edit the JSON-LD in the same page's `<head>`.
+  The Visit page declares a `FAQPage` matching its FAQs, which are the owners' own (from the Beauty &
+  Spa page of courage.net.au, Nov 2026). Edit both together.
   Check with https://search.google.com/test/rich-results.
 - **Analytics.** Cloudflare Web Analytics, loaded by the beacon script at the end of every page.
   Cookieless, so no consent banner. Reports live in the Me² Cloudflare account under Analytics &
@@ -207,7 +209,6 @@ page's structured data.
 ## Content needed from Serenive
 
 - Square booking link and the Square eGift card link, to set up on the owners' existing account.
-- The FAQ from the owners' current website, for the Visit page. We still need its address.
 - The Canva stock images the owners already use, plus their own interim photos, until the
   professional shoot.
 - Professional photography of the space, team and treatments to replace the stock images.
