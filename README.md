@@ -16,7 +16,7 @@ package.json     pins Wrangler, the Cloudflare CLI
 
 | Address | File | Page |
 | --- | --- | --- |
-| `/` | `index.html` | Home: hero, why we exist, treatments, the space, packages and vouchers, Instagram, newsletter |
+| `/` | `index.html` | Home: hero, why we exist, treatments, plan your visit, packages and vouchers, Instagram, newsletter |
 | `/philosophy` | `philosophy.html` | Why We Exist (client copy, verbatim) |
 | `/treatments` | `treatments.html` | The seven menu categories, with from-prices and Book buttons |
 | `/treatments/facials` and six more | `treatments/*.html` | One page per menu category with the full price list and its own share image |
@@ -118,6 +118,10 @@ committing them.
 - **Square Appointments:** paste Square's embed into `public/book.html` (see the comment there), or
   put the Square booking URL in `data-square-url` on `#booking-continue`. In Square, set the button
   colour to Forest `#2F4A3B` and upload `serenive-monogram` as the logo.
+  Serenive uses the owners' existing Square account (registered to their company's ABN, so the ABN
+  question is settled), and Me² has team member access to it. The owners take full payment at
+  booking today, so the plan is Square's "Require full prepayment" (available on the free plan)
+  rather than a card hold.
 - **Gift vouchers:** point the "Buy a gift voucher" button in `public/packages.html` at Square eGift Cards.
 
 ## Privacy policy and legal details
@@ -130,11 +134,16 @@ When it changes, update the "Last updated" line in the page's side column.
 - Operator: Rebecca Handyside, sole trader, ABN 61 463 662 718 (active from 20 Oct 2026, not GST
   registered at the time of writing). The ABR showed no business name linked to the ABN; trading as
   "Serenive Beauty & Spa" normally needs the name registered with ASIC. Worth confirming with the owners.
+- **Pending ownership change (Nov 2026):** the owners plan to move Serenive from Bec's sole-trader
+  ABN to their company, Courage Health & Fitness (ABN 90 600 111 242), which is being renamed
+  Courage Health Hub. When they confirm it has gone through, update the operator sentence in
+  `public/privacy.html` (and its "Last updated" line) and this section.
 - Social: Instagram https://www.instagram.com/serenive.au/ and Facebook
   https://www.facebook.com/Serenive.au/, linked from every footer and listed as `sameAs` in the
   home page's `DaySpa` data. There is no TikTok account, so no TikTok link.
-- A booking and cancellation policy is not on the site yet; it needs the owners' terms (notice
-  period, deposit and no-show rules) once Square is set up.
+- A booking and cancellation policy is not on the site yet. The owners' terms (Nov 2026): 24 hours'
+  notice, 50% fee for a late cancellation, 100% for a no-show. Add it to `/book` once Square is set
+  up and the wording is approved.
 
 ## Search, analytics and small comforts
 
@@ -180,17 +189,27 @@ Settings live in `wrangler.jsonc` under `vars` (`CONTACT_TO`, `FROM_ADDRESS`, `F
 ## The menu
 
 Treatments, durations and prices come from the owners' approved list (Serenive Beauty & Spa,
-November 2026) and live in one place: the `TREATMENTS` list in the page builder, which writes the
-category pages. Seasonal offers (for example the Winter Comforter) are deliberately left off the
+November 2026). Seasonal offers (for example the Winter Comforter) are deliberately left off the
 site, because they change continually; promote them on Instagram instead. Treatment names should
 match the booking system exactly.
+
+The seven categories appear in the owners' order everywhere they are listed: massage, facials,
+hands & feet, signature spa rituals, mum-to-be, gentleman's domain, body, sauna & spray tan. That
+covers the home page index (with its photo stage), the Treatments page (sections, strip and
+`ItemList` data), the Philosophy strip, the Book page and the sitemap. Each treatment page's
+"more treatments" cards show the first four other categories in that order. The Treatments page
+sections alternate ivory and forest, so reordering them means re-applying that pattern (and the
+`split--flip` layout and button style that go with it).
 
 Address, phone, email and treatment hours are on the Visit page, in the footer and in the home
 page's structured data.
 
 ## Content needed from Serenive
 
-- Square booking link and the Square eGift card link (Square chosen; account being verified).
+- Square booking link and the Square eGift card link, to set up on the owners' existing account.
+- The FAQ from the owners' current website, for the Visit page. We still need its address.
+- The Canva stock images the owners already use, plus their own interim photos, until the
+  professional shoot.
 - Professional photography of the space, team and treatments to replace the stock images.
 
 ## House rules (Me²)
@@ -203,6 +222,8 @@ page's structured data.
 
 Keep to these when editing:
 
+- **Motto:** "Relax · Restore · Revive". The owners changed it from the brand board's "Renew" in
+  Nov 2026. It appears in the page eyebrows, the home page marquee and the default share image.
 - **Colour:** forest, sage, ivory and gold, plus the pack's derived text tokens (`ink-muted`, `accent`).
   No other hues, and no gradients apart from the sage-marble texture.
 - **Shadows:** none. Separate things with space, hairlines or a gold rule.
