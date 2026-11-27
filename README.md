@@ -213,6 +213,10 @@ sections alternate ivory and forest, so reordering them means re-applying that p
 Address, phone, email and treatment hours are on the Visit page, in the footer and in the home
 page's structured data.
 
+The phone number is written `08 8182 4682` (Australian Government Style Manual: no brackets), with
+`&nbsp;` between the groups so it never wraps, and every link dials `tel:+61881824682`. The structured
+data uses `+61881824682`.
+
 ## Content needed from Serenive
 
 - Square booking link and the Square eGift card link, to set up on the owners' existing account.
