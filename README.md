@@ -147,8 +147,15 @@ When it changes, update the "Last updated" line in the page's side column.
 
 ## Search, analytics and small comforts
 
-- **Structured data.** The home page declares the `DaySpa` (address, phone, hours). Each treatment page
-  declares a `Service` with an `OfferCatalog` of every menu item (name, duration, price in AUD) and a
+- **Page titles** name what people search for, plus the suburb: "Massage in Salisbury | Serenive
+  Beauty & Spa", "Pregnancy massage in Salisbury | …" for Mum-to-be, and so on. Keep them under about
+  60 characters so Google shows them whole. The `og:title` (what a shared link shows) keeps the
+  menu's own names.
+- **Icons:** `favicon.ico` (16, 32 and 48px, rendered from `serenive-icon-forest.svg`) for browsers
+  and crawlers that don't take the SVG icon, plus `apple-touch-icon.png`.
+- **Structured data.** The home page declares the `DaySpa` (address, phone, hours, map link) under the
+  id `https://serenive.com.au/#dayspa`, which every treatment page's `provider` points back to. Each
+  treatment page declares a `Service` with an `OfferCatalog` of every menu item (name, duration, price in AUD) and a
   `BreadcrumbList`; the treatments index declares an `ItemList`. It is generated from the menu markup,
   so when prices change in the HTML, regenerate or edit the JSON-LD in the same page's `<head>`.
   The Visit page declares a `FAQPage` matching its FAQs, which are the owners' own (from the Beauty &
@@ -205,6 +212,10 @@ sections alternate ivory and forest, so reordering them means re-applying that p
 
 Address, phone, email and treatment hours are on the Visit page, in the footer and in the home
 page's structured data.
+
+The phone number is written `08 8182 4682` (Australian Government Style Manual: no brackets), with
+`&nbsp;` between the groups so it never wraps, and every link dials `tel:+61881824682`. The structured
+data uses `+61881824682`.
 
 ## Content needed from Serenive
 

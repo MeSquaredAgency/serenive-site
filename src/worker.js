@@ -91,7 +91,7 @@ async function contact(fields, email, meta, env) {
     ], `Sent from the website contact form on ${esc(pretty(meta.at))}. Reply to this email to answer ${esc(name)}.`),
   });
 
-  if (!sent) return json({ ok: false, error: 'We couldn’t send your message just now. Please try again, or call us on (08) 8182 4682.' }, 502);
+  if (!sent) return json({ ok: false, error: 'We couldn’t send your message just now. Please try again, or call us on 08\u00a08182\u00a04682.' }, 502);
   return json({ ok: true });
 }
 

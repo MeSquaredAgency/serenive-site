@@ -32,21 +32,34 @@
   /* Mobile menu */
   var toggle = document.querySelector('.menu-toggle');
   var sheet = document.getElementById('menu');
+  /* While the full-screen menu is open, the page behind it is inert, so keyboard and screen
+     reader users stay in the menu (the header stays live for the Close button). */
+  var behind = [].slice.call(document.querySelectorAll('.skip-link, main, .site-footer, .book-bar'));
   function setMenu(open) {
+    var wasOpen = root.classList.contains('menu-open');
     root.classList.toggle('menu-open', open);
     document.body.classList.toggle('menu-open', open);
     if (toggle) {
       toggle.setAttribute('aria-expanded', String(open));
       toggle.querySelector('.menu-toggle__label').textContent = open ? 'Close' : 'Menu';
     }
-    if (sheet) sheet.inert = !open;
+    if (sheet) {
+      if (!open && wasOpen && sheet.contains(document.activeElement) && toggle) toggle.focus();
+      sheet.inert = !open;
+    }
+    behind.forEach(function (el) { el.inert = open; });
     if (lenis) { if (open) lenis.stop(); else lenis.start(); }
   }
   if (toggle && sheet) {
     sheet.inert = true;
     toggle.addEventListener('click', function () { setMenu(!root.classList.contains('menu-open')); });
     sheet.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && root.classList.contains('menu-open')) setMenu(false); });
+    /* The menu belongs to the narrow layout (CSS shows the toggle up to 1140px): close it if the
+       window widens past that, so the page is never left inert behind a hidden sheet. */
+    var wide = window.matchMedia('(min-width: 1141px)');
+    var onWide = function () { if (wide.matches && root.classList.contains('menu-open')) setMenu(false); };
+    if (wide.addEventListener) wide.addEventListener('change', onWide); else if (wide.addListener) wide.addListener(onWide);
   }
 
   /* Gentle reveal: only for blocks that start below the fold, so the first view is complete at rest. */
